@@ -5,7 +5,7 @@ class ProveedorController {
     public function index() {
         try {
             $modelProveedor = new Proveedor();
-            $proveedor_unico = $modelProveedor->getById(1);
+            $proveedor_unico = $modelProveedor->getAll();
 
             require_once __DIR__ . '/../views/proveedor/index.php';
         } catch (Exception $e) {
@@ -17,12 +17,31 @@ class ProveedorController {
      public function crear() {
         try {
             $modelProveedor = new Proveedor();
-            $proveedor_unico = $modelProveedor->getById(1);
+            $proveedor_unico = $modelProveedor->getAll();
 
             require_once __DIR__ . '/../views/proveedor/crear.php';
         } catch (Exception $e) {
             echo "Error en la visualización de proveedores: " . $e->getMessage();
             exit();
+        }
+    }
+
+        public function Guardar()
+    {
+        $idProveedor = $_POST['idProveedor'];
+        $razonSocia = $_POST['razonSocial'];
+        $nombreProv = $_POST['nombreProv'];
+        $direccion = $_POST['direccion'];
+        $telefonoProv = $_POST['telefonoProv'];
+
+        $proveedor = new proveedor();
+        $resultado = $proveedor->Guardar($idProveedor, $razonSocia, $nombreProv, $direccion, $telefonoProv);
+
+        if ($resultado) {
+            echo "Proveedor guardado correctamente";
+            $this->index();
+        } else {
+            echo "El proveedor no se pudo guardar";
         }
     }
 }

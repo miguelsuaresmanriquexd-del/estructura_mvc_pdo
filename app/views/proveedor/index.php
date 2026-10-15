@@ -8,13 +8,15 @@
         <th>Dirección</th>
         <th>Teléfono</th>
     </tr>
+    <?php foreach ($proveedor_unico as $prov): ?>
     <tr>
-        <td><?= $proveedor_unico['idProveedor'] ?></td>
-        <td><?= $proveedor_unico['razonSocial'] ?></td>
-        <td><?= $proveedor_unico['nombreProv'] ?></td>
-        <td><?= $proveedor_unico['direccion'] ?></td>
-        <td><?= $proveedor_unico['telefonoProv'] ?></td>
+        <td><?= $prov['idProveedor'] ?></td>
+        <td><?= $prov['razonSocial'] ?></td>
+        <td><?= $prov['nombreProv'] ?></td>
+        <td><?= $prov['direccion'] ?></td>
+        <td><?= $prov['telefonoProv'] ?></td>
     </tr>
+     <?php endforeach; ?>
 </table>
 <?php else: ?>
     <p style="color:red;"></p>

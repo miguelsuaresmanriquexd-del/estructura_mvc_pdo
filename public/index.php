@@ -156,12 +156,24 @@ if ($method === 'GET' && $uri === "/Producto") {
 
 
 <a href="/proveedor">proveedor</a>
+<a href="/proveedor/crear">crear proveedor</a>
+
+<?php
+if ($method === "GET" && $uri === "/proveedor/crear") {
+    $ProveedorC = new ProveedorController();
+    $ProveedorC->crear();
+}
+
+if ($method === "POST" && $uri === "/proveedor") {
+    $controller = new ProveedorController();
+    $controller->Guardar();
+}
+?>
 
 <?php
 if ($method === 'GET' && $uri === "/proveedor") {
 
     $controller = new ProveedorController();
-    $controller->crear();
     $controller->index();
 }
 

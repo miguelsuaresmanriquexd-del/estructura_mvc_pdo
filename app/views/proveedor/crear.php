@@ -1,7 +1,23 @@
 <form action="/proveedor" method="POST">
-    <input type="text" name="nombreProv">
-    <input type="text" name="direccion">
-    <input type="number" name="telefonoProv">
-    <input type="text" name="razonSocial">
+    <div>
+        <label for="idProveedor">NIT / ID Proveedor:</label>
+        <input type="text" id="idProveedor" name="idProveedor" required>
+    </div>
+    <div>
+        <label for="nombreProv">Nombre:</label>
+        <input type="text" id="nombreProv" name="nombreProv" required>
+    </div>
+    <div>
+        <label for="direccion">Direccion:</label>
+        <input type="text" id="direccion" name="direccion" required>
+    </div>
+    <div>
+        <label for="telefonoProv">Telefono:</label>
+        <input type="number" id="telefonoProv" name="telefonoProv" required>
+    </div>
+    <div>
+        <label for="razonSocial">Razon:</label>
+        <input type="text" id="razonSocial" name="razonSocial" required>
+    </div>
     <button type="submit">Guardar</button>
 </form>
