@@ -6,6 +6,7 @@
         <th>Nombre</th>
         <th>Precio</th>
         <th>Stock Disponible</th>
+        <th>Acciones</th>
     </tr>
     <?php foreach ($productos_lista as $prod): ?>
     <tr>
@@ -13,6 +14,7 @@
         <td><?= $prod['nombreProd'] ?></td>
         <td>$<?= number_format($prod['precioProduc'], 2) ?></td>
         <td><?= $prod['stock'] ?></td>
+        <td><a href="/producto/editar?idProducto="<?=$prod['idProducto']?></a>editar</td>
     </tr>
     <?php endforeach; ?>
 </table>

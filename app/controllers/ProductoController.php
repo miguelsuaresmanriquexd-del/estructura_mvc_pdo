@@ -38,4 +38,12 @@ class ProductoController {
             echo "el producto no se pudo guardar";
         }
     }
+    public function editar(){
+        $id = filter_input (INPUT_GET, 'id', FILTER_VALIDATE_INT);
+
+        $producto = new Producto();
+        $producto=$producto->getByid($id);
+
+         require_once __DIR__ . '/../views/producto/editar.php';
+    }
 } 

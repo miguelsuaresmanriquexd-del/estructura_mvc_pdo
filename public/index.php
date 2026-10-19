@@ -2,6 +2,9 @@
 
 require_once __DIR__ . '/../app/controllers/UsuarioController.php';
 
+$method = $_SERVER['REQUEST_METHOD'];
+$uri = $_SERVER['REQUEST_URI'];
+
 $controller = new UsuarioController();
 //$controller->index();
 
@@ -58,15 +61,16 @@ require_once __DIR__ . '/../app/controllers/ProductoController.php';
 $controller = new ProductoController();
 //$controller->index();
 
-
-$method = $_SERVER['REQUEST_METHOD'];
-$uri = $_SERVER['REQUEST_URI']; // <-- Corregido: Se añadió el punto y coma (;)
+$ruta = parse_url($uri, PHP_URL_PATH);
+    if($ruta === "/producto/editar" && $method=== "GET"){
+        $productoC = new ProductoController();
+        $productoC->editar();
+    }
 ?>
 
 
 
-<a href="/Usuario">Usuario</a>
-<a href="/Usuario/crear">crear usuario</a>
+
 
 <?php
 if ($method === "GET" && $uri === "/Usuario/crear") {
@@ -124,8 +128,7 @@ if ($method === 'GET' && $uri === "/Ciudad") {
 }
 
 ?>
-<a href="/Producto">productos</a>
-<a href="/Producto/crear">crear</a>
+
 
 
 <?php
@@ -141,8 +144,6 @@ if ($method === "POST" && $uri === "/producto") {
 
 ?>
 
-
-
 <?php
 
 if ($method === 'GET' && $uri === "/Producto") {
@@ -155,8 +156,7 @@ if ($method === 'GET' && $uri === "/Producto") {
 ?>
 
 
-<a href="/proveedor">proveedor</a>
-<a href="/proveedor/crear">crear proveedor</a>
+
 
 <?php
 if ($method === "GET" && $uri === "/proveedor/crear") {
@@ -178,8 +178,7 @@ if ($method === 'GET' && $uri === "/proveedor") {
 }
 
 ?>
- <a href="/Cliente">Cliente</a>
-<a href="/Cliente/crear">crear cliente</a>
+
 
 <?php
 if ($method === "GET" && $uri === "/Cliente/crear") {
@@ -199,3 +198,16 @@ if ($method === 'GET' && $uri === "/Cliente") {
     $controller->index();
 }
 ?>
+
+<a href="/Usuario">Usuario</a>
+<a href="/Usuario/crear">crear usuario</a>
+
+<a href="/Producto">productos</a>
+<a href="/Producto/crear">crear</a>
+
+<a href="/proveedor">proveedor</a>
+<a href="/proveedor/crear">crear proveedor</a>
+
+ <a href="/Cliente">Cliente</a>
+<a href="/Cliente/crear">crear cliente</a>
+
