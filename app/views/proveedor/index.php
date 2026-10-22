@@ -7,6 +7,7 @@
         <th>Nombre de Contacto</th>
         <th>Dirección</th>
         <th>Teléfono</th>
+        <th>Acciones</th>
     </tr>
     <?php foreach ($proveedor_unico as $prov): ?>
     <tr>
@@ -15,6 +16,7 @@
         <td><?= $prov['nombreProv'] ?></td>
         <td><?= $prov['direccion'] ?></td>
         <td><?= $prov['telefonoProv'] ?></td>
+        <td><a href="/proveedor/editar?idProveedor=<?= $prov['idProveedor'] ?>">Editar</a></td>
     </tr>
      <?php endforeach; ?>
 </table>

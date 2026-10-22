@@ -44,4 +44,17 @@ class ProveedorController {
             echo "El proveedor no se pudo guardar";
         }
     }
-}
+      public function editar(){
+        $id = filter_input(INPUT_GET, 'idProveedor', FILTER_VALIDATE_INT);
+
+        if (!$id){
+            echo "ocurrio un error buscando el id";
+        }
+        
+
+        $proveedor = new Proveedor();
+        $proveedor=$proveedor->getById($id);
+
+         require_once __DIR__ . '/../views/proveedor/editar.php';
+    }
+} 

@@ -7,6 +7,7 @@
         <th>Apellido</th>
         <th>Edad</th>
         <th>fechaNacim</th>
+        <th>Acciones</th>
     </tr>
 
     <?php foreach ($usuarios as $usuario_unico): ?>
@@ -16,6 +17,7 @@
         <td><?= $usuario_unico['apellidoUsu'] ?></td>
         <td><?= $usuario_unico['edadUsuario'] ?></td>
         <td><?= $usuario_unico['fechaNacim']?></td>
+        <td><a href="/usuario/editar?idDocumento=<?= $usuario_unico['idDocumento'] ?>">Editar</a></td>
     </tr>
     <?php endforeach; ?>
 </table>

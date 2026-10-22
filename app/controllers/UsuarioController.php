@@ -51,4 +51,18 @@ class UsuarioController
             echo "el usuario no se pudo guardar";
         }
     }
+
+      public function editar(){
+        $id = filter_input(INPUT_GET, 'idDocumento', FILTER_VALIDATE_INT);
+
+        if (!$id){
+            echo "ocurrio un error buscando el id";
+        }
+        
+
+        $usuario = new Usuario();
+        $usuario=$usuario->getById($id);
+
+         require_once __DIR__ . '/../views/usuario/editar.php';
+    }
 }

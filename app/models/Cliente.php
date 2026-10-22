@@ -12,11 +12,11 @@ class Cliente {
     public function getById($id) 
     {
         try {
-            $sql = "SELECT nDocCliente, nombreClie, telefonoClie, direccionClie, correoClie FROM Cliente WHERE nDocCliente = :id";
+            $sql = "SELECT idCiudad, nDocCliente, nombreClie, telefonoClie, direccionClie, correoClie FROM Cliente WHERE nDocCliente = :id";
             $consulta = $this->connection->prepare($sql); 
             $consulta->bindParam(':id', $id, PDO::PARAM_INT);
             $consulta->execute();
-            return $consulta->fetch(PDO::FETCH_ASSOC);
+            return $consulta->fetch(PDO::FETCH_OBJ);
         } catch (PDOException $e) {
             echo "Error de ID en cliente: " . $e->getMessage();
             exit();
@@ -26,7 +26,7 @@ class Cliente {
     public function getAll() 
     {
         try {
-            $sql = "SELECT nDocCliente, nombreClie, telefonoClie, direccionClie, correoClie FROM Cliente";
+            $sql = "SELECT idCiudad, nDocCliente, nombreClie, telefonoClie, direccionClie, correoClie FROM Cliente";
             $consulta = $this->connection->prepare($sql); 
             $consulta->execute();
             return $consulta->fetchAll(PDO::FETCH_ASSOC);
@@ -36,17 +36,18 @@ class Cliente {
         }
     }
 
-    public function Guardar($nDocCliente, $nombreClie, $telefonoClie, $direccionClie, $correoClie)
+    public function Guardar($idCiudad, $nDocCliente, $nombreClie, $telefonoClie, $direccionClie, $correoClie)
     {
         try {
-            $sql = "INSERT INTO Cliente (nDocCliente, nombreClie, telefonoClie, direccionClie, correoClie) 
-                    VALUES (:nDocCliente, :nombreClie, :telefonoClie, :direccionClie, :correoClie)";
+            $sql = "INSERT INTO Cliente (nDocCliente, nombreClie, telefonoClie, direccionClie, correoClie, idCiudad) 
+                    VALUES (:nDocCliente, :nombreClie, :telefonoClie, :direccionClie, :correoClie, :idCiudad)";
             $consulta = $this->connection->prepare($sql);
             $consulta->bindParam(":nDocCliente", $nDocCliente);
             $consulta->bindParam(":nombreClie", $nombreClie);
             $consulta->bindParam(":telefonoClie", $telefonoClie);
             $consulta->bindParam(":direccionClie", $direccionClie);
             $consulta->bindParam(":correoClie", $correoClie);
+             $consulta->bindParam(":idCiudad", $idCiudad);
             return $consulta->execute();
         } catch (PDOException $e) {
             echo "Error al guardar el cliente " . $nombreClie . " ERROR SQL: " . $e->getMessage();

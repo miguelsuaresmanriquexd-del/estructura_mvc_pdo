@@ -4,6 +4,7 @@ require_once __DIR__ . '/../app/controllers/UsuarioController.php';
 
 $method = $_SERVER['REQUEST_METHOD'];
 $uri = $_SERVER['REQUEST_URI'];
+$ruta = parse_url($uri, PHP_URL_PATH);
 
 $controller = new UsuarioController();
 //$controller->index();
@@ -61,11 +62,7 @@ require_once __DIR__ . '/../app/controllers/ProductoController.php';
 $controller = new ProductoController();
 //$controller->index();
 
-$ruta = parse_url($uri, PHP_URL_PATH);
-    if($ruta === "/producto/editar" && $method=== "GET"){
-        $productoC = new ProductoController();
-        $productoC->editar();
-    }
+
 ?>
 
 
@@ -73,6 +70,25 @@ $ruta = parse_url($uri, PHP_URL_PATH);
 
 
 <?php
+if($ruta === "/producto/editar" && $method=== "GET"){
+    $productoC = new ProductoController();
+    $productoC->editar();
+}
+
+if($ruta === "/usuario/editar" && $method=== "GET"){
+    $UsuarioC = new UsuarioController();
+    $UsuarioC->editar();
+}
+
+if($ruta === "/proveedor/editar" && $method=== "GET"){
+    $ProveedorC = new ProveedorController();
+    $ProveedorC->editar();
+}
+if($ruta === "/cliente/editar" && $method=== "GET"){
+    $ClienteC = new ClienteController();
+    $ClienteC->editar();
+}
+
 if ($method === "GET" && $uri === "/Usuario/crear") {
     $UsuarioC = new UsuarioController();
     $UsuarioC->crear();

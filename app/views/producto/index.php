@@ -14,7 +14,7 @@
         <td><?= $prod['nombreProd'] ?></td>
         <td>$<?= number_format($prod['precioProduc'], 2) ?></td>
         <td><?= $prod['stock'] ?></td>
-        <td><a href="/producto/editar?idProducto="<?=$prod['idProducto']?></a>editar</td>
+        <td><a href="/producto/editar?idProducto=<?= $prod['idProducto'] ?>">Editar</a></td>
     </tr>
     <?php endforeach; ?>
 </table>

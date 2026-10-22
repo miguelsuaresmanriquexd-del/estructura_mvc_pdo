@@ -15,7 +15,7 @@ class Producto {
             $consulta = $this->connection->prepare($sql); 
             $consulta->bindParam(':id', $id, PDO::PARAM_INT);
             $consulta->execute();
-            return $consulta->fetch(PDO::FETCH_ASSOC);
+            return $consulta->fetch(PDO::FETCH_OBJ);
         } catch (PDOException $e) {
             echo "Error de ID en producto: " . $e->getMessage();
             exit();
