@@ -14,7 +14,8 @@
         <td><?= $prod['nombreProd'] ?></td>
         <td>$<?= number_format($prod['precioProduc'], 2) ?></td>
         <td><?= $prod['stock'] ?></td>
-        <td><a href="/producto/editar?idProducto=<?= $prod['idProducto'] ?>">Editar</a></td>
+        <td><a href="/producto/editar?idProducto=<?= $prod['idProducto'] ?>">Editar</a>
+    <a href="/producto/elimanar?id=<?=$prod->idProducto?>"onclick="return confirm('¿seguro que deseas eliminar este producto?')"></a></td>
     </tr>
     <?php endforeach; ?>
 </table>

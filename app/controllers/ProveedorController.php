@@ -57,4 +57,24 @@ class ProveedorController {
 
          require_once __DIR__ . '/../views/proveedor/editar.php';
     }
-} 
+
+        public function actualizar()
+    {
+     $idProveedor = $_POST['idProveedor'];
+        $razonSocia = $_POST['razonSocial'];
+        $nombreProv = $_POST['nombreProv'];
+        $direccion = $_POST['direccion'];
+        $telefonoProv = $_POST['telefonoProv'];
+
+        $proveedor = new proveedor();
+        $resultado = $proveedor->actualizar($idProveedor, $razonSocia, $nombreProv, $direccion, $telefonoProv);
+
+        if ($resultado) {
+            header('Location: /Producto/index');
+            exit;
+        } else {
+            echo "error en guardado";
+        }
+    }
+}
+

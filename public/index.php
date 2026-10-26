@@ -74,6 +74,15 @@ if($ruta === "/producto/editar" && $method=== "GET"){
     $productoC = new ProductoController();
     $productoC->editar();
 }
+if($ruta === "/producto/actualizar" && $method === "POST"){
+    $productoC = new ProductoController();
+    $productoC->actualizar();
+}
+if($ruta === "/proveedor/actualizar" && $method === "POST"){
+    $ProveedorC = new ProveedorController();
+    $ProveedorC->actualizar();
+}
+
 
 if($ruta === "/usuario/editar" && $method=== "GET"){
     $UsuarioC = new UsuarioController();

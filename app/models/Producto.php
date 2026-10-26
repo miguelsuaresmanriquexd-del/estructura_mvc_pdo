@@ -11,7 +11,7 @@ class Producto {
 
     public function getById($id) {
         try {
-            $sql = "SELECT idProducto, nombreProd, precioProduc, stock FROM producto WHERE idProducto = :id";
+            $sql = "SELECT * FROM producto WHERE idProducto = :id";
             $consulta = $this->connection->prepare($sql); 
             $consulta->bindParam(':id', $id, PDO::PARAM_INT);
             $consulta->execute();
@@ -21,6 +21,7 @@ class Producto {
             exit();
         }
     }
+    
 
     public function guardar($nombreProd, $precioProduc, $stock, $idProducto){
         try {
@@ -45,7 +46,7 @@ class Producto {
     
     public function getAll() {
         try {
-            $sql = "SELECT idProducto, nombreProd, precioProduc, stock FROM producto";
+            $sql = "SELECT * FROM producto";
             $consulta = $this->connection->prepare($sql);
             $consulta->execute();
             return $consulta->fetchAll(PDO::FETCH_ASSOC);
@@ -53,5 +54,32 @@ class Producto {
             echo "Error al obtener todos los productos: " . $e->getMessage();
             return [];
         }
+    }
+
+ public function actualizar($nombreProd, $precioProduc, $stock, $idProducto){
+        try {
+            $sql = "UPDATE producto SET
+                    nombreProd = :nombreProd,
+                    precioProduc = :precioProduc,
+                    stock = :stock 
+                    WHERE idProducto = :idProducto";
+
+            $consulta = $this->connection->prepare($sql);
+            $consulta->bindParam(":nombreProd", $nombreProd);
+            $consulta->bindParam(":precioProduc", $precioProduc);
+            $consulta->bindParam(":stock", $stock);
+            $consulta->bindParam(":idProducto", $idProducto);
+
+            return $consulta->execute();
+        } catch (PDOException $e) {
+            echo "Error al actualizar el producto: " . $e->getMessage();
+            return false;
+        }
+    }
+
+    public function eliminar($id){
+        $sql = "DELETE FROM producto WHERE idProducto = ?";
+        $consulta = $this->connection->prepare($sql);
+        return $consulta->execute([$id]);
     }
 }

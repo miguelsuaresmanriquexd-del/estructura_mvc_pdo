@@ -52,4 +52,22 @@ class Proveedor {
             return false;
         }
     }
+
+        public function actualizar($razonSocial, $nombreProv, $direccion, $telefonoProv, $idProveedor){
+        $sql="UPDATE Proveedor SET
+        razonSocial=:razonSocial,
+        nombreProv=:nombreProv,
+        direccion=:direccion,
+        telefonoProv=:telefonoProv,
+        WHERE idProveedor=:idProveedor";
+
+         $consulta = $this->connection->prepare($sql);
+            $consulta->bindParam(":idProveedor", $idProveedor);
+            $consulta->bindParam(":razonSocial", $razonSocial);
+            $consulta->bindParam(":nombreProv", $nombreProv);
+            $consulta->bindParam(":direccion", $direccion);
+            $consulta->bindParam(":telefonoProv", $telefonoProv);
+            return $consulta->execute();
+    }
 }
+
