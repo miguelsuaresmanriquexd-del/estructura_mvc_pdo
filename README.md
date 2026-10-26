@@ -12,3 +12,6 @@ Plataforma web para la gestión de portafolios de inversión en múltiples activ
 
 ## trabajo 19/10/2026
 se realizo algo de editar y un formulario dentro de eso.
+
+## trabajo 26/10/2026
+se realizo el metodo actualizar y eliminar en las tablas  creadas del proyecto
