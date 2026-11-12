@@ -53,21 +53,26 @@ class Proveedor {
         }
     }
 
-        public function actualizar($razonSocial, $nombreProv, $direccion, $telefonoProv, $idProveedor){
-        $sql="UPDATE Proveedor SET
-        razonSocial=:razonSocial,
-        nombreProv=:nombreProv,
-        direccion=:direccion,
-        telefonoProv=:telefonoProv,
-        WHERE idProveedor=:idProveedor";
+    public function actualizar($idProveedor, $razonSocial, $nombreProv, $direccion, $telefonoProv){
+        $sql = "UPDATE proveedor SET
+                razonSocial = :razonSocial,
+                nombreProv = :nombreProv,
+                direccion = :direccion,
+                telefonoProv = :telefonoProv
+                WHERE idProveedor = :idProveedor";
 
-         $consulta = $this->connection->prepare($sql);
-            $consulta->bindParam(":idProveedor", $idProveedor);
-            $consulta->bindParam(":razonSocial", $razonSocial);
-            $consulta->bindParam(":nombreProv", $nombreProv);
-            $consulta->bindParam(":direccion", $direccion);
-            $consulta->bindParam(":telefonoProv", $telefonoProv);
-            return $consulta->execute();
+        $consulta = $this->connection->prepare($sql);
+        $consulta->bindParam(":idProveedor", $idProveedor);
+        $consulta->bindParam(":razonSocial", $razonSocial);
+        $consulta->bindParam(":nombreProv", $nombreProv);
+        $consulta->bindParam(":direccion", $direccion);
+        $consulta->bindParam(":telefonoProv", $telefonoProv);
+        return $consulta->execute();
+    }
+
+public function eliminar($id) {
+        $sql = "DELETE FROM proveedor WHERE idProveedor = :id";
+        $consulta = $this->connection->prepare($sql);
+        return $consulta->execute([':id' => $id]);
     }
 }
-

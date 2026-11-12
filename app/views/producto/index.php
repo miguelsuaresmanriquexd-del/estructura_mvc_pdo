@@ -14,11 +14,14 @@
         <td><?= $prod['nombreProd'] ?></td>
         <td>$<?= number_format($prod['precioProduc'], 2) ?></td>
         <td><?= $prod['stock'] ?></td>
-        <td><a href="/producto/editar?idProducto=<?= $prod['idProducto'] ?>">Editar</a>
-    <a href="/producto/elimanar?id=<?=$prod->idProducto?>"onclick="return confirm('¿seguro que deseas eliminar este producto?')"></a></td>
+        <td>
+            <a href="/producto/editar?idProducto=<?= $prod['idProducto'] ?>">Editar</a> | 
+            <a href="/producto/eliminar?id=<?= $prod['idProducto'] ?>" onclick="return confirm('¿Seguro que deseas eliminar este producto?')">Eliminar</a>
+        </td>
     </tr>
     <?php endforeach; ?>
 </table>
 <?php else: ?>
     <p style="color:red;">No se encontró la información del producto</p>
-<?php endif; ?>
+<?php endif;
+ ?>

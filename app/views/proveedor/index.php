@@ -16,10 +16,13 @@
         <td><?= $prov['nombreProv'] ?></td>
         <td><?= $prov['direccion'] ?></td>
         <td><?= $prov['telefonoProv'] ?></td>
-        <td><a href="/proveedor/editar?idProveedor=<?= $prov['idProveedor'] ?>">Editar</a></td>
+        <td>
+            <a href="/proveedor/editar?idProveedor=<?= $prov['idProveedor'] ?>">Editar</a> | 
+            <a href="/proveedor/eliminar?idProveedor=<?= $prov['idProveedor'] ?>" onclick="return confirm('¿seguro que deseas eliminar este proveedor?')">Eliminar</a>
+        </td>
     </tr>
      <?php endforeach; ?>
 </table>
 <?php else: ?>
-    <p style="color:red;"></p>
+    <p style="color:red;">No se encontró información del proveedor</p>
 <?php endif; ?>

@@ -26,15 +26,14 @@ class ProveedorController {
         }
     }
 
-        public function Guardar()
-    {
+    public function Guardar() {
         $idProveedor = $_POST['idProveedor'];
         $razonSocia = $_POST['razonSocial'];
         $nombreProv = $_POST['nombreProv'];
         $direccion = $_POST['direccion'];
         $telefonoProv = $_POST['telefonoProv'];
 
-        $proveedor = new proveedor();
+        $proveedor = new Proveedor();
         $resultado = $proveedor->Guardar($idProveedor, $razonSocia, $nombreProv, $direccion, $telefonoProv);
 
         if ($resultado) {
@@ -44,37 +43,55 @@ class ProveedorController {
             echo "El proveedor no se pudo guardar";
         }
     }
-      public function editar(){
+
+    public function editar(){
         $id = filter_input(INPUT_GET, 'idProveedor', FILTER_VALIDATE_INT);
 
         if (!$id){
             echo "ocurrio un error buscando el id";
+            return;
         }
-        
 
         $proveedor = new Proveedor();
-        $proveedor=$proveedor->getById($id);
+        $proveedor = $proveedor->getById($id);
 
-         require_once __DIR__ . '/../views/proveedor/editar.php';
+        require_once __DIR__ . '/../views/proveedor/editar.php';
     }
 
-        public function actualizar()
-    {
-     $idProveedor = $_POST['idProveedor'];
+    public function actualizar() {
+        $idProveedor = $_POST['idProveedor'];
         $razonSocia = $_POST['razonSocial'];
         $nombreProv = $_POST['nombreProv'];
         $direccion = $_POST['direccion'];
         $telefonoProv = $_POST['telefonoProv'];
 
-        $proveedor = new proveedor();
+        $proveedor = new Proveedor();
         $resultado = $proveedor->actualizar($idProveedor, $razonSocia, $nombreProv, $direccion, $telefonoProv);
 
         if ($resultado) {
-            header('Location: /Producto/index');
+            header('Location: /proveedor/index');
             exit;
         } else {
             echo "error en guardado";
         }
     }
-}
 
+    public function eliminar() {
+        $id = filter_input(INPUT_GET, 'idProveedor', FILTER_VALIDATE_INT);
+
+        if (!$id) {
+            echo "ocurrio un error buscando el id";
+            return;
+        }
+
+        $proveedor = new Proveedor();
+        $resultado = $proveedor->eliminar($id);
+
+        if ($resultado) {
+            header('Location: /proveedor/index');
+            exit;
+        } else {
+            echo "error al eliminar";
+        }
+    }
+}

@@ -22,12 +22,10 @@ class Producto {
         }
     }
     
-
     public function guardar($nombreProd, $precioProduc, $stock, $idProducto){
         try {
             $sql="INSERT INTO producto (nombreProd, precioProduc, stock, idProducto)
-            VALUES (:nombreProd, :precioProduc, :stock, :idProducto)
-            ";
+            VALUES (:nombreProd, :precioProduc, :stock, :idProducto)";
 
             $consulta = $this->connection->prepare($sql);
             $consulta->bindparam(":nombreProd", $nombreProd);
@@ -42,7 +40,6 @@ class Producto {
             return false;
         }
     }
-
     
     public function getAll() {
         try {
@@ -56,7 +53,7 @@ class Producto {
         }
     }
 
- public function actualizar($nombreProd, $precioProduc, $stock, $idProducto){
+    public function actualizar($nombreProd, $precioProduc, $stock, $idProducto){
         try {
             $sql = "UPDATE producto SET
                     nombreProd = :nombreProd,

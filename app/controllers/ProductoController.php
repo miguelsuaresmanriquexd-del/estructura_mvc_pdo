@@ -3,7 +3,6 @@ require_once __DIR__ . '/../models/Producto.php';
 
 class ProductoController
 {
-
     public function crear()
     {
         require_once __DIR__ . '/../views/producto/crear.php';
@@ -45,6 +44,7 @@ class ProductoController
 
         if (!$id){
             echo "ocurrio un error buscando el id";
+            return;
         }
         
         $producto = new Producto();
@@ -53,31 +53,31 @@ class ProductoController
         require_once __DIR__ . '/../views/producto/editar.php';
     }
 
-public function actualizar(){
-        // Acepta tanto los nombres nuevos como los antiguos por seguridad
+    public function actualizar(){
         $nombreProd = $_POST['nombreProd'] ?? $_POST['nombre'] ?? null;
         $precioProduc = $_POST['precioProduc'] ?? $_POST['precio'] ?? null;
         $stock = $_POST['stock'] ?? null;
         $idProducto = $_POST['idProducto'] ?? $_POST['id'] ?? null;
         
         if (!$idProducto) {
-            echo "Error: No se recibió el ID del producto a actualizar. (ID recibido: " . print_r($_POST, true) . ")";
+            echo "Error: No se recibió el ID del producto a actualizar.";
             exit();
         }
         
         $producto = new Producto();
         $resultado = $producto->actualizar($nombreProd, $precioProduc, $stock, $idProducto);
 
-        return $this->index();
+        header("Location: /producto/index");
+        exit();
     }
 
- public function eliminar(){
-        $id = $_POST['idProducto'] ?? $_POST['id'] ?? null;
+    public function eliminar(){
+        $id = $_GET['id'] ?? $_GET['idProducto'] ?? null;
         
         $producto = new Producto();
         $resultado = $producto->eliminar($id);
 
-        header("Location: /producto");
+        header("Location: /producto/index");
         exit();
     }
 }
