@@ -16,7 +16,9 @@
         <td><?= $prod['stock'] ?></td>
         <td>
             <a href="/producto/editar?idProducto=<?= $prod['idProducto'] ?>">Editar</a> | 
-            <a href="/producto/eliminar?id=<?= $prod['idProducto'] ?>" onclick="return confirm('¿Seguro que deseas eliminar este producto?')">Eliminar</a>
+            <button>
+                <a href="/producto/eliminar?id=<?= $prod['idProducto'] ?>" onclick="return confirm('¿Seguro que deseas eliminar este producto?')">Eliminar</a>
+            </button>
         </td>
     </tr>
     <?php endforeach; ?>

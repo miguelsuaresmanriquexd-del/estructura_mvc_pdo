@@ -1,18 +1,21 @@
 <?php
 require_once __DIR__ . '/../../config/conexion.php';
 
-class Producto {
+class Producto
+{
     private $connection;
 
-    public function __construct(){
+    public function __construct()
+    {
         $database = new database();
         $this->connection = $database->conectar();
     }
 
-    public function getById($id) {
+    public function getById($id)
+    {
         try {
             $sql = "SELECT * FROM producto WHERE idProducto = :id";
-            $consulta = $this->connection->prepare($sql); 
+            $consulta = $this->connection->prepare($sql);
             $consulta->bindParam(':id', $id, PDO::PARAM_INT);
             $consulta->execute();
             return $consulta->fetch(PDO::FETCH_OBJ);
@@ -21,10 +24,11 @@ class Producto {
             exit();
         }
     }
-    
-    public function guardar($nombreProd, $precioProduc, $stock, $idProducto){
+
+    public function guardar($nombreProd, $precioProduc, $stock, $idProducto)
+    {
         try {
-            $sql="INSERT INTO producto (nombreProd, precioProduc, stock, idProducto)
+            $sql = "INSERT INTO producto (nombreProd, precioProduc, stock, idProducto)
             VALUES (:nombreProd, :precioProduc, :stock, :idProducto)";
 
             $consulta = $this->connection->prepare($sql);
@@ -34,14 +38,15 @@ class Producto {
             $consulta->bindparam(":idProducto", $idProducto);
 
             return $consulta->execute();
-            
+
         } catch (PDOException $e) {
             echo "Error al guardar el producto" . $nombreProd . "ERROR SQL:" . $e->getMessage();
             return false;
         }
     }
-    
-    public function getAll() {
+
+    public function getAll()
+    {
         try {
             $sql = "SELECT * FROM producto";
             $consulta = $this->connection->prepare($sql);
@@ -53,7 +58,8 @@ class Producto {
         }
     }
 
-    public function actualizar($nombreProd, $precioProduc, $stock, $idProducto){
+    public function actualizar($nombreProd, $precioProduc, $stock, $idProducto)
+    {
         try {
             $sql = "UPDATE producto SET
                     nombreProd = :nombreProd,
@@ -74,7 +80,8 @@ class Producto {
         }
     }
 
-    public function eliminar($id){
+    public function eliminar($id)
+    {
         $sql = "DELETE FROM producto WHERE idProducto = ?";
         $consulta = $this->connection->prepare($sql);
         return $consulta->execute([$id]);

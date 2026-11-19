@@ -61,39 +61,138 @@ $controller = new CiudadController();
 require_once __DIR__ . '/../app/controllers/ProductoController.php';
 $controller = new ProductoController();
 //$controller->index();
-
-
 ?>
 
-
-
-
-
 <?php
-if($ruta === "/producto/editar" && $method=== "GET"){
-    $productoC = new ProductoController();
-    $productoC->editar();
-}
-if($ruta === "/producto/actualizar" && $method === "POST"){
-    $productoC = new ProductoController();
-    $productoC->actualizar();
-}
-if($ruta === "/proveedor/actualizar" && $method === "POST"){
-    $ProveedorC = new ProveedorController();
-    $ProveedorC->actualizar();
+switch ($ruta) {
+    case "/producto/editar";
+        if ($method === "GET") {
+            $productoC = new ProductoController();
+            $productoC->editar();
+        }
+        break;
+    case "/producto/actualizar";
+        if ($method === "POST") {
+            $productoC = new ProductoController();
+            $productoC->actualizar();
+        }
+        break;
+    case "/Producto/crear";
+        if ($method === "GET") {
+            $productoC = new ProductoController();
+            $productoC->crear();
+        }
+        break;
+    case "/producto";
+        if ($method === "POST") {
+            $productoC = new ProductoController();
+            $productoC->Guardar();
+        }
+        break;
+    case "/Producto";
+        if ($method === "GET") {
+            $productoC = new ProductoController();
+            $productoC->index();
+        }
+        break;
+    case "/proveedor/actualizar";
+        if ($method === "POST") {
+            $ProveedorC = new ProveedorController();
+            $ProveedorC->actualizar();
+        }
+        break;
+    case "/proveedor/editar";
+        if ($method === "GET") {
+            $ProveedorC = new ProveedorController();
+            $ProveedorC->editar();
+        }
+        break;
+    case "/proveedor/crear";
+        if ($method === "GET") {
+            $ProveedorC = new ProveedorController();
+            $ProveedorC->crear();
+        }
+        break;
+    case "/proveedor";
+        if ($method === "POST") {
+            $ProveedorC = new ProveedorController();
+            $ProveedorC->Guardar();
+        }
+        break;
+    case "proveedor";
+        if ($method === "GET") {
+            $ProveedorC = new ProveedorController();
+            $ProveedorC->index();
+        }
+        break;
+    case "/usuario/editar";
+        if ($method === "GET") {
+            $UsuarioC = new UsuarioController();
+            $UsuarioC->editar();
+        }
+        break;
+    case "/Usuario/crear";
+        if ($method === "GET") {
+            $UsuarioC = new UsuarioController();
+            $UsuarioC->crear();
+        }
+        break;
+    case "/usuario";
+        if ($method === "POST") {
+            $UsuarioC = new UsuarioController();
+            $UsuarioC->Guardar();
+        }
+        break;
+    case "/Usuario";
+        if ($method === "GET") {
+            $UsuarioC = new UsuarioController();
+            $UsuarioC->index();
+        }
+        break;
+    case "/cliente/editar";
+        if ($method === "GET") {
+            $ClienteC = new ClienteController();
+            $ClienteC->editar();
+        }
+        break;
+    case "/Cliente/crear";
+        if ($method === "GET") {
+            $ClienteC = new ClienteController();
+            $ClienteC->crear();
+        }
+        break;
+    case "/cliente";
+        if ($method === "POST") {
+            $ClienteC = new ClienteController();
+            $ClienteC->Guardar();
+        }
+        break;
+    case "/Cliente";
+        if ($method === "GET") {
+            $ClienteC = new ClienteController();
+            $ClienteC->index();
+        }
+        break;
+    case "/Compra";
+        if ($method === "GET") {
+            $controller = new CompraController();
+            $controller->index();
+        }
+        break;
+    case "/Venta";
+        if ($method === "GET") {
+            $controller = new VentaController();
+            $controller->index();
+        }
+        break;
 }
 
 
-if($ruta === "/usuario/editar" && $method=== "GET"){
+if ($ruta === "/usuario/editar" && $method === "GET") {
     $UsuarioC = new UsuarioController();
     $UsuarioC->editar();
 }
-
-if($ruta === "/proveedor/editar" && $method=== "GET"){
-    $ProveedorC = new ProveedorController();
-    $ProveedorC->editar();
-}
-if($ruta === "/cliente/editar" && $method=== "GET"){
+if ($ruta === "/cliente/editar" && $method === "GET") {
     $ClienteC = new ClienteController();
     $ClienteC->editar();
 }
@@ -153,36 +252,6 @@ if ($method === 'GET' && $uri === "/Ciudad") {
 }
 
 ?>
-
-
-
-<?php
-if ($method === "GET" && $uri === "/Producto/crear") {
-    $productoC = new ProductoController();
-    $productoC->crear();
-}
-
-if ($method === "POST" && $uri === "/producto") {
-    $productoC = new ProductoController();
-    $productoC->Guardar();
-}
-
-?>
-
-<?php
-
-if ($method === 'GET' && $uri === "/Producto") {
-
-    $controller = new ProductoController();
-
-    $controller->index();
-}
-
-?>
-
-
-
-
 <?php
 if ($method === "GET" && $uri === "/proveedor/crear") {
     $ProveedorC = new ProveedorController();
@@ -233,6 +302,5 @@ if ($method === 'GET' && $uri === "/Cliente") {
 <a href="/proveedor">proveedor</a>
 <a href="/proveedor/crear">crear proveedor</a>
 
- <a href="/Cliente">Cliente</a>
+<a href="/Cliente">Cliente</a>
 <a href="/Cliente/crear">crear cliente</a>
-

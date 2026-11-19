@@ -54,4 +54,9 @@ class Cliente {
             return false;
         }
     }
+    public function eliminar($id){
+        $sql = "DELETE FROM cliente WHERE nDocCliente = ?";
+        $consulta = $this->connection->prepare($sql);
+        return $consulta->execute([$id]);
+    }
 }

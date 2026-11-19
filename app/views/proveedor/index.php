@@ -18,7 +18,9 @@
         <td><?= $prov['telefonoProv'] ?></td>
         <td>
             <a href="/proveedor/editar?idProveedor=<?= $prov['idProveedor'] ?>">Editar</a> | 
-            <a href="/proveedor/eliminar?idProveedor=<?= $prov['idProveedor'] ?>" onclick="return confirm('¿seguro que deseas eliminar este proveedor?')">Eliminar</a>
+           <button>
+ <a href="/proveedor/eliminar?idProveedor=<?= $prov['idProveedor'] ?>" onclick="return confirm('¿seguro que deseas eliminar este proveedor?')">Eliminar</a>
+           </button>
         </td>
     </tr>
      <?php endforeach; ?>
