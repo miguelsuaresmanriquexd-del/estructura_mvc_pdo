@@ -15,3 +15,6 @@ se realizo algo de editar y un formulario dentro de eso.
 
 ## trabajo 26/10/2026
 se realizo el metodo actualizar y eliminar en las tablas  creadas del proyecto
+
+## trabajo hoy 23/11/2026
+se agregos json al proyecto como actividad para agregar productos de esa manera y demas
